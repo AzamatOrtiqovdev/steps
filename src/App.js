@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <div>
-      <button className="close" onClick={() => setIsOpen((isOpen) => !isOpen)}>
+      <button className="close" onClick={() => setIsOpen(!isOpen)}>
         &times;
       </button>
 
@@ -39,21 +39,27 @@ export default function App() {
           </p>
 
           <div className="buttons">
-            <button
-              style={{ background: "#7950f2", color: "#fff" }}
-              onClick={hundlePrevious}
-            >
-              previous
-            </button>
-            <button
-              style={{ background: "#7950f2", color: "#fff" }}
-              onClick={hundleNext}
-            >
-              next
-            </button>
+            <Button bgColor={"#7950f2"} color={"#fff"} onHundle={hundlePrevious}>
+                <span>👈</span> previous
+            </Button>
+
+            <Button bgColor={"#7950f2"} color={"#fff"} onHundle={hundleNext}>
+                <span>👉</span> next
+            </Button>
           </div>
         </div>
       )}
     </div>
+  );
+}
+
+function Button({ bgColor, color, onHundle, children }) {
+  return (
+    <button
+      style={{background: bgColor, color: color}}
+      onClick={onHundle}
+    >
+      {children}
+    </button>
   );
 }
